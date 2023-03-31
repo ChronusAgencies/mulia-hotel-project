@@ -1,0 +1,19 @@
+@mixin flexPos($x, $y, $dir){
+    display: flex;
+    flex-direction: $dir;
+    justify-content: $x;
+    align-items: $y;
+}
+
+@mixin fontOpt($font, $size, $weight, $color){
+    font-family: $font, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    font-size: $size;
+    font-weight: $weight;
+    color: $color;
+}
+
+@mixin responsive($widthOpt, $width){
+    @media screen and ($widthOpt: $width){
+        @content
+    }
+}
