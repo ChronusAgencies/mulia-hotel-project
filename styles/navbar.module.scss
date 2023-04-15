@@ -1,0 +1,120 @@
+@use 'mixins';
+
+.wrapper{
+    position: fixed;
+    width: 100%;
+    height: 4.8rem;
+    margin-top: .8rem;
+    padding-inline: 2.4rem;
+    @include mixins.flexPos(space-between, center, row);
+    background: rgba($color: var(--primayColor), $alpha: .8);
+    backdrop-filter: (7.5px);
+    z-index: 500;
+
+    .logo_link{
+        width: 15%;
+        height: 100%;
+        
+        .logo{
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+    }
+
+    .toggle{
+        width: 4.4rem;
+        height: 100%;
+        background: var(--tertierColor);
+        padding: .4rem;
+        @include mixins.flexPos(center,center,column);
+        position: relative;
+
+        span{
+            position: absolute;
+            height: .4rem;
+            background: var(--secondaryColor);
+            border-radius: 2rem;
+            transition: transform .3s;
+
+            &:first-child{
+                width: 75%;
+                transform: translateY(-200%) rotate(0);
+            }
+
+            &:nth-child(2){
+                width: 50%;
+                transform: scaleX(1);
+            }
+
+            &:last-child{
+                width: 75%;
+                transform: translateY(200%) rotate(0);
+            }
+        }
+
+        &.isActive{
+            span{
+                &:first-child{
+                    transform: translateY(0) rotate(45deg);
+                }
+                &:nth-child(2){
+                    transform: scaleX(0);
+                }
+                &:last-child{
+                    transform: translateY(0) rotate(-45deg);
+                }
+            }
+        }
+    }
+}
+
+.main_wrapper{
+    position: fixed;
+    padding-inline: 2.4rem;
+    width: 100%;
+    height: 100dvh;
+    background: var(--secondaryColor);
+    z-index: 90;
+    @include mixins.flexPos(center,center,column);
+    transform: translateY(-100%);
+    transition: transform .6s;
+
+    &.isActive{
+        transform: translateY(0);
+    }
+    
+    .link_wrapper{
+        width: 100%;
+        @include mixins.flexPos(center,center,column);
+        gap: 2.4rem;
+
+        .links_container{
+            width: 100%;
+            @include mixins.flexPos(flex-end,flex-end,row);
+            gap: 2.4rem;
+            padding-top: 1rem;
+
+            .main_link{
+                @include mixins.flexPos(flex-start,center,row);
+                gap: 1.6rem;
+                @include mixins.fontOpt('Quicksand', 2.4rem, 700, var(--tertierColor));
+
+                svg{
+                    width: 2.4rem;
+                    height: 2.4rem;
+
+                    path{
+                        fill: var(--tertierColor);
+                    }
+                }
+            }
+
+            .sec_link{
+                @include mixins.fontOpt('Quicksand', 2rem, 700, var(--tertierColor));
+                text-decoration: underline;
+            }
+        }
+    }
+}
+
