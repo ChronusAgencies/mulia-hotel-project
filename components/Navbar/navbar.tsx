@@ -10,7 +10,7 @@ import Toggle from './Toggle/toggle';
 import Navigation from '../Navigation/navigation';
 
 
-const navbar = () => {
+const Navbar = () => {
 
   const [isActive, setActive] = useState(false)
   
@@ -137,4 +137,4 @@ const navbar = () => {
   )
 }
 
-export default navbar
+export default Navbar

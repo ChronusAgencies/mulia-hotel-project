@@ -8,7 +8,7 @@ import Button from '@/components/Button/button';
 //     time : null
 // }
 
-const liveChat = ({name,clickEvent} : classProps) => {
+const LiveChat = ({name,clickEvent} : classProps) => {
     // function to format single digit number into two digit
     const padTo2Digit = (num : number) => {
         return num.toString().padStart(2, '0')
@@ -99,4 +99,4 @@ const liveChat = ({name,clickEvent} : classProps) => {
   )
 }
 
-export default liveChat
+export default LiveChat

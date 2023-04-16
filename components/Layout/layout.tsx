@@ -3,7 +3,7 @@ import Navbar from '../Navbar/navbar';
 import Footer from '../Footer/footer';
 import Modal from '../Modal/modal';
 
-const layout = ({children} : HTMLProps<HTMLAnchorElement>) => {
+const Layout = ({children} : HTMLProps<HTMLAnchorElement>) => {
   return (
     <>
         <Navbar/>
@@ -14,4 +14,4 @@ const layout = ({children} : HTMLProps<HTMLAnchorElement>) => {
   )
 }
 
-export default layout
+export default Layout

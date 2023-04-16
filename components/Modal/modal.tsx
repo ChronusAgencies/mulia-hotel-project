@@ -5,7 +5,7 @@ import Toggle from '../Navbar/Toggle/toggle';
 import styles from '@/styles/modal.module.scss';
 import LiveChat from './LiveChat/liveChat';
 
-const modal = () => {
+const Modal = () => {
     // state for modal background
     const[modalIsActive, setModal] = useState(false);
 
@@ -35,4 +35,4 @@ const modal = () => {
   )
 }
 
-export default modal
+export default Modal

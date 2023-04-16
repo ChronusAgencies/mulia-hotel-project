@@ -1,7 +1,7 @@
 import { classProps } from '@/utils/interface/interface';
 import React from 'react';
 
-const navigation = ({name, children} : classProps) => {
+const Navigation = ({name, children} : classProps) => {
   return (
     <nav className={name}>
         {children}
@@ -9,4 +9,4 @@ const navigation = ({name, children} : classProps) => {
   )
 }
 
-export default navigation
+export default Navigation
