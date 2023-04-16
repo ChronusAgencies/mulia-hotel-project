@@ -10,20 +10,29 @@
     z-index: 90;
     padding-top: 6.4rem;
     display: none;
-    @include mixins.flexPos(flex-start, center, column);
-
 
     &.isActive{
         @include mixins.flexPos(center, center, column);
     }
+}
 
-    .liveChat{
-        width: 90%;
-        position: relative;
-        border-radius: 2rem;
-        overflow: hidden;
+.liveChat{
+    position: fixed;
+    z-index: 90;
+    width: 90%;
+    position: relative;
+    border-radius: 2rem;
+    overflow: hidden;
+    transform-origin: bottom right;
+    transform: scale(0);
+    transition: transform .3s;
+    margin: auto;
+    top: 6.4rem;
 
+    &.chatIsActive{
+        transform: scale(1);
     }
+
 }
 
 .chat_toggle{

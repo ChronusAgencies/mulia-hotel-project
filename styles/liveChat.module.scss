@@ -64,6 +64,7 @@
             height: 55%;
             @include mixins.flexPos(flex-start,center, column);
             gap: .8rem;
+            overflow-y: scroll;
 
 
             .chatWrapper{
