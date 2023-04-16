@@ -1,9 +1,52 @@
-import { classProps } from '@/utils/interface/interface';
-import React from 'react';
+import { IMessageData, classProps } from '@/utils/interface/interface';
+import React, { useEffect, useState } from 'react';
 import styles from '@/styles/liveChat.module.scss';
 import Button from '@/components/Button/button';
 
+// const initialState: IMessageData = {
+//     message : null,
+//     time : null
+// }
+
 const liveChat = ({name,clickEvent} : classProps) => {
+    // function to format single digit number into two digit
+    const padTo2Digit = (num : number) => {
+        return num.toString().padStart(2, '0')
+    };
+
+    // function to format rendered time in hour:minute format in 24hr
+    const formatTime = (date : Date) => {
+        return(
+            [
+                padTo2Digit(date.getHours()),
+                padTo2Digit(date.getMinutes())
+            ].join(':')
+        );
+    };
+
+    // set hooks to save the messages
+    const [message, setMessage] = useState<string>();
+
+    //function to handle text area value changes
+    const handleMessageChange = (event : React.ChangeEvent<HTMLTextAreaElement>) => {
+        setMessage(event.currentTarget.value)
+    };
+
+
+    // set hooks to save user chat and time
+    const [userMessage, setUserMessage] = useState<IMessageData[]>([]);
+
+    // function to handle form submit
+    const handleMessageSubmit = (event : React.FormEvent<HTMLElement & HTMLFormElement>) => {
+        event.preventDefault();
+
+        setUserMessage(prevMessage => [...prevMessage, {messages : message,
+            time : formatTime(new Date)}])
+    }
+
+    useEffect(() => {setMessage('')}, [userMessage])
+
+
   return (
     <>
         <div className={name}>
@@ -24,13 +67,29 @@ const liveChat = ({name,clickEvent} : classProps) => {
             </div>
             <div className={styles.wrapper}>
                 <div className={styles.container}>
-                    <div className={styles.window}></div>
-                    <form className={styles.textArea}>
-                        <label htmlFor="messages">Enter your messages...</label>
-                        <textarea name="messages" id="messages" cols={30} rows={10} className={styles.messagesBox}>
+                    <div className={styles.window}>
+                        {userMessage.map((MSG, id) => {
+                            return(
+                                <div key={id} className={styles.chatWrapper}>
+                                    <div className={styles.chatBubble}>
+                                        <p className={styles.chatMessage}>{MSG.messages}</p>
+                                        <p className={styles.chatTime}>{MSG.time}</p>
+                                    </div>
+                                </div>
+                            )
+                        }
+                        )}
+                    </div>
+                    <form className={styles.textArea} onSubmit={handleMessageSubmit}>
+                        <textarea name="messages" id="messages" cols={30} rows={10} className={styles.messagesBox} placeholder='Enter your messages...' onChange={handleMessageChange} value={message}>
                         </textarea>
-                        <Button>
-                            
+                        <Button
+                            btnType='submit'
+                            name={styles.messagesSubmit}
+                        >
+                            <svg width="18" height="16" viewBox="0 0 18 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M1.4 15.4251C1.06667 15.5584 0.75 15.5291 0.45 15.3371C0.15 15.1451 0 14.8661 0 14.5001V10.7751C0 10.5417 0.0666667 10.3334 0.2 10.1501C0.333333 9.96672 0.516667 9.85005 0.75 9.80005L8 8.00005L0.75 6.20005C0.516667 6.15005 0.333333 6.03339 0.2 5.85005C0.0666667 5.66672 0 5.45838 0 5.22505V1.50005C0 1.13338 0.15 0.854052 0.45 0.662052C0.75 0.470052 1.06667 0.441051 1.4 0.575051L16.8 7.07505C17.2167 7.25838 17.425 7.56672 17.425 8.00005C17.425 8.43338 17.2167 8.74172 16.8 8.92505L1.4 15.4251Z" fill="#222222"/>
+                             </svg>
                         </Button>
                     </form>
                 </div>
