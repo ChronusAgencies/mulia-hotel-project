@@ -1,0 +1,45 @@
+@use 'mixins';
+
+
+.modal_overlay{
+    position: fixed;
+    width: 100%;
+    height: 100dvh;
+    background: rgba($color: var(--primaryColor), $alpha: 0.5);
+    backdrop-filter: blur(15px);
+    z-index: 90;
+    padding-top: 6.4rem;
+    display: none;
+    @include mixins.flexPos(flex-start, center, column);
+
+
+    &.isActive{
+        @include mixins.flexPos(center, center, column);
+    }
+
+    .liveChat{
+        width: 90%;
+        position: relative;
+        border-radius: 2rem;
+        overflow: hidden;
+
+    }
+}
+
+.chat_toggle{
+    width: 4.8rem;
+    height: 4.8rem;
+    @include mixins.flexPos(center,center,row);
+    background: var(--tertierColor);
+    border-radius: 50%;
+    position: fixed;
+    bottom: 4.8rem;
+    right: 2.4rem;
+    @include mixins.boxShadow(4px, 4px, 15px);
+    z-index: 100;
+
+    svg{
+        width: 2.4rem;
+        height: 2rem;
+    }
+}

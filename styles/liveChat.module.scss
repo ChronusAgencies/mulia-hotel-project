@@ -1,0 +1,135 @@
+@use 'mixins';
+
+.header{
+    width: 100%;
+    padding: .8rem 2.4rem;
+    background: #d9d9d9;
+    @include mixins.flexPos(flex-start, center, row);
+    gap: 1.6rem;
+
+    .profilePic{
+        width: 4.2rem;
+        height: 4.2rem;
+        @include mixins.flexPos(center, center, row);
+        background: #FFFFFF;
+        @include mixins.boxShadow(4px, 4px, 25px);
+        border-radius: 50%;
+
+        svg{
+            width: 2rem;
+            height: 1.9rem;
+        }
+    }
+
+    .profile{
+        @include mixins.flexPos(flex-start, flex-start, column);
+
+        .username{
+            @include mixins.fontOpt('Quicksand', 1.6rem, 800, var(--secondaryColor));
+        }
+        .position{
+            @include mixins.fontOpt('Quicksand', 1.2rem, 400, var(--secondaryColor));
+        }
+        .status{
+            @include mixins.fontOpt('Quicksand', 1rem, 400, var(--secondaryColor));
+            @include mixins.flexPos(flex-start, center, row);
+            gap: .4rem;
+
+            .status_isOnline{
+                width: .6rem;
+                height: .6rem;
+                border-radius: 50%;
+                background: #43D66C;
+            }
+        }
+    }
+}
+.wrapper{
+    width: 100%;
+    height: 70dvh;
+    background: var(--primaryColor);
+    padding: 1.6rem;
+
+    .container{
+        width: 100%;
+        height: 100%;
+        box-shadow: inset 4px 4px 15px rgba($color: #000000, $alpha: 0.8);
+        border-radius: 1.6rem;
+        padding: 1.6rem;
+        @include mixins.flexPos(flex-start,center, column);
+        gap: .8rem;
+
+        .window{
+            width: 100%;
+            height: 55%;
+            @include mixins.flexPos(flex-start,center, column);
+            gap: .8rem;
+
+
+            .chatWrapper{
+                width: 100%;
+                @include mixins.flexPos(flex-end, center, row);
+
+                .chatBubble{
+                    width: max(50%);
+                    padding: .8rem;
+                    @include mixins.flexPos(flex-end, flex-start, column);
+                    background: var(--tertierColor);
+                    border-radius: 1rem;
+                    gap: .4rem;
+
+                    .chatMessage{
+                        @include mixins.fontOpt('Quicksand', 1.6rem, 700, var(--secondaryColor));
+                        text-align: left;
+                    }
+
+                    .chatTime{
+                        @include mixins.fontOpt('Quicksand', 1rem, 400, var(--secondaryColor));
+                        font-style: italic;
+                        margin-left: auto;
+                    }
+                }
+            }
+        }
+
+        .textArea{
+            width: 100%;
+            background: #d9d9d9;
+            height: 45%;
+            border-radius: 1.2rem;
+            @include mixins.flexPos(flex-start,flex-start, column);
+            padding: .8rem 1.6rem;
+            position: relative;
+            gap: .4rem;
+
+            .messagesBox{
+                width: 100%;
+                height: 75%;
+                border: none;
+                background: transparent;
+                outline: none;
+                @include mixins.fontOpt('Quicksand', 1.2rem, 400, var(--secondaryColor));
+            }
+
+            .messagesSubmit{
+                position: absolute;
+                border: none;
+                background: var(--tertierColor);
+                outline: none;
+                width: 3.6rem;
+                height: 3.6rem;
+                border-radius: 50%;
+                @include mixins.boxShadow(4px, 4px, 15px);
+                @include mixins.flexPos(center, center, row);
+                bottom: 0;
+                right: 0;
+                transform: translate(-25%, -25%);
+
+                svg{
+                    width: 1.8rem;
+                    height: 1.4rem;
+                }
+            }
+        }
+    }
+}

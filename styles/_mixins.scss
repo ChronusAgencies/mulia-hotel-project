@@ -1,3 +1,7 @@
+@mixin boxShadow($x, $y, $blur){
+    box-shadow: $x $y $blur 0 rgba($color: var(--secondaryColor), $alpha: .8);
+}
+
 @mixin flexPos($x, $y, $dir){
     display: flex;
     flex-direction: $dir;
