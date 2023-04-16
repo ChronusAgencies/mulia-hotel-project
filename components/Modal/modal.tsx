@@ -5,22 +5,24 @@ import Toggle from '../Navbar/Toggle/toggle';
 import styles from '@/styles/modal.module.scss';
 import LiveChat from './LiveChat/liveChat';
 
-const modal = () => {
-
+const Modal = () => {
+    // state for modal background
     const[modalIsActive, setModal] = useState(false);
+
+    // state for chat modal
+    const[chatIsActive, setChatRoom] = useState(false)
 
     const chatActivation = () => {
         setModal(!modalIsActive);
+        setChatRoom(!chatIsActive);
     }
-    // ${modalIsActive ? styles.isActive : ''}
 
   return (
     <>
-        <div className={`${styles.modal_overlay}`}>
-            <LiveChat
-                name={styles.liveChat}
-            />
-        </div>
+        <div className={`${styles.modal_overlay} ${modalIsActive && styles.isActive}`}></div>
+        <LiveChat
+                name={`${styles.liveChat} ${chatIsActive && modalIsActive ? styles.chatIsActive : ''}`}
+        />
         <Toggle
             name={styles.chat_toggle}
             clickEvent={chatActivation}
@@ -33,4 +35,4 @@ const modal = () => {
   )
 }
 
-export default modal
+export default Modal

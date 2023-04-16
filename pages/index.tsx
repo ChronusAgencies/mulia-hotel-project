@@ -1,7 +1,6 @@
 import React from 'react';
 import style from '../styles/Landing.module.scss';
 import Image from 'next/image';
-import Route from '@/components/Routes/route';
 
 
 
